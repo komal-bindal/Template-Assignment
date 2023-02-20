@@ -1,0 +1,83 @@
+.emailBox-container {
+  width: fit-content;
+  height: fit-content;
+  min-width: 20%;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px 0px;
+  z-index: 20;
+}
+
+.emailBox-heading {
+  border-radius: 10px 0px;
+  padding: 15px;
+  background-color: #45b6fe;
+  margin: 0;
+  color: white;
+  overflow: hidden;
+  font-size: 1.1rem;
+}
+
+.emailBox-body {
+  /* margin:15px; */
+  padding: 15px;
+  /* background-color: #45b6fe; */
+}
+
+.emailBox-body-start {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.emailBox-inputBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  margin: 4px;
+}
+
+.emailBox-footer {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.emailBox-label {
+  padding: 2px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.emailBox-input {
+  border: 0px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.emailBox-input:focus {
+  outline: none;
+}
+
+.emailBox-container .active {
+  opacity: 1;
+  transition: 200ms ease;
+}
+
+.emailBox-container .inactive {
+  opacity: 0;
+  transition: 200ms ease;
+}
+
+.emailBox-error {
+  padding: 0px 4px;
+  color: red;
+  min-height: 0.8rem;
+  font-size: 0.8rem;
+}

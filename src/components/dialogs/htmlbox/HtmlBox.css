@@ -1,0 +1,72 @@
+.htmlBox-container {
+  width: fit-content;
+  min-width: 25%;
+  height: fit-content;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px 0px;
+  z-index: 20;
+}
+
+.htmlBox-heading {
+  border-radius: 10px 0px;
+  padding: 15px;
+  background-color: #45b6fe;
+  margin: 0;
+  color: white;
+  overflow: hidden;
+  font-size: 1.1rem;
+}
+
+.htmlBox-body {
+  /* margin:15px; */
+  padding: 15px;
+  /* background-color: #45b6fe; */
+}
+
+.htmlBox-body-start {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.htmlBox-inputBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  margin: 4px;
+}
+
+.htmlBox-footer {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.htmlBox-label {
+  padding: 2px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.htmlBox-input {
+  border: 0px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.htmlBox-input:focus {
+  outline: none;
+}
+.htmlBox-error {
+  padding: 0px 4px;
+  color: red;
+  min-height: 0.8rem;
+  font-size: 0.8rem;
+}
