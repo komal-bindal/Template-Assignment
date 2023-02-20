@@ -4,6 +4,7 @@ import { useEffect, useReducer, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addHtml, editHtml } from "../../../actions/html.actions";
 import AceEditor from "react-ace";
+import "ace-builds/webpack-resolver";
 
 function HtmlBox(props) {
   const dataMode = useSelector((state) => state.htmlDialogBoxReducer);
@@ -83,7 +84,6 @@ function HtmlBox(props) {
     if (!values.html) {
       errors.html = "HTML is required";
     }
-
     return errors;
   }
 
@@ -155,12 +155,11 @@ function HtmlBox(props) {
             HTML
           </label>
           <AceEditor
-            className="htmlBox-input "
             id="html"
             placeholder="Write you HTML"
             mode="html"
+            theme="monokai"
             name="html"
-            type="text"
             value={boxInfo.html}
             onChange={(e) => handleHTMLChange(e)}
           ></AceEditor>

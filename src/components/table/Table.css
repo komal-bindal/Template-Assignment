@@ -1,6 +1,5 @@
 .table-container {
-  border: 1px solid black;
-  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
@@ -8,15 +7,11 @@
 
 th,
 td {
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 5px;
   word-wrap: break-word;
 }
 
-/* 
-.table-description{
-    
-} */
 
 .overlay {
   position: fixed;
@@ -29,4 +24,13 @@ td {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
   cursor: pointer;
+}
+
+thead{
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+tr:nth-child(even){
+    background-color: rgba(0, 0, 0, 0.05);
+
 }

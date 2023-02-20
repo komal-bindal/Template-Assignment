@@ -22,9 +22,9 @@ const htmlReducer = (state = initialState, dispatchedAction) => {
           return h;
         }
       });
-      newState = newState.map((h, i) => {
+      newState = newState.map((html, i) => {
         return {
-          ...h,
+          ...html,
           id: i + 1,
         };
       });
