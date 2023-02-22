@@ -2,11 +2,13 @@ import Button from "../../button/Button";
 import "./EmailBox.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addEmail, editEmail } from "../../../actions/email.actions";
+import { addEmail, editEmail, selectEmails } from "../../../store/modules/email";
+import { selectEmailDialogMode, selectEmailEditData } from "../../../store/modules/emailDialog";
 
 function EmailBox(props) {
-  const dataMode = useSelector((state) => state.emailDialogBoxReducer);
-  const emails = useSelector((state) => state.emailReducer.emails);
+  const mode = useSelector(selectEmailDialogMode);
+  const editData = useSelector(selectEmailEditData)
+  const emails = useSelector(selectEmails);
   const dispatch = useDispatch();
 
   const [boxInfo, setBoxInfo] = useState({
@@ -22,22 +24,22 @@ function EmailBox(props) {
   const [formErrors, setFormErrors] = useState({});
 
   useEffect(() => {
-    if (dataMode.mode === "edit") {
+    if (mode === "edit") {
       setBoxInfo((prev) => {
         return {
           ...prev,
-          id: dataMode.payload.id,
-          name: dataMode.payload.name,
-          subject: dataMode.payload.subject,
-          to: dataMode.payload.to,
-          body: dataMode.payload.body,
+          id: editData.id,
+          name: editData.name,
+          subject: editData.subject,
+          to: editData.to,
+          body: editData.body,
         };
       });
     }
-  }, [dataMode.payload]);
+  }, [editData]);
 
   useEffect(() => {
-    if (dataMode.mode === "add") {
+    if (mode === "add") {
       setBoxInfo((prev) => {
         return {
           ...prev,
@@ -87,11 +89,11 @@ function EmailBox(props) {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      if (dataMode.mode == "add") {
+      if (mode == "add") {
         dispatch(addEmail(boxInfo));
         console.log("added");
         props.toggleDialog();
-      } else if (dataMode.mode === "edit") {
+      } else if (mode === "edit") {
         dispatch(editEmail(boxInfo));
         console.log("edited");
         props.toggleDialog();

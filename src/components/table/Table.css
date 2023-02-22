@@ -12,7 +12,6 @@ td {
   word-wrap: break-word;
 }
 
-
 .overlay {
   position: fixed;
   width: 100%;
@@ -26,11 +25,10 @@ td {
   cursor: pointer;
 }
 
-thead{
-    background-color: rgba(0, 0, 0, 0.05);
+thead {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
-tr:nth-child(even){
-    background-color: rgba(0, 0, 0, 0.05);
-
+tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05);
 }

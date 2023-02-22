@@ -2,13 +2,15 @@ import Button from "../../button/Button";
 import "./HtmlBox.css";
 import { useEffect, useReducer, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addHtml, editHtml } from "../../../actions/html.actions";
+import { addHtml, editHtml, selectHtmls } from "../../../store/modules/html";
 import AceEditor from "react-ace";
 import "ace-builds/webpack-resolver";
+import { htmlDialogEditMode, selectHtmlDialogMode, selectHtmlEditData } from "../../../store/modules/htmlDialog";
 
 function HtmlBox(props) {
-  const dataMode = useSelector((state) => state.htmlDialogBoxReducer);
-  const htmls = useSelector((state) => state.htmlReducer.htmls);
+  const mode = useSelector(selectHtmlDialogMode);
+  const editData = useSelector(selectHtmlEditData)
+  const htmls = useSelector(selectHtmls);
   const dispatch = useDispatch();
   const [isSubmit, setSubmit] = useState(false);
   const [formErrors, setFormErrors] = useState({});
@@ -20,21 +22,21 @@ function HtmlBox(props) {
   });
 
   useEffect(() => {
-    if (dataMode.mode === "edit") {
+    if (mode === "edit") {
       setBoxInfo((prev) => {
         return {
           ...prev,
-          id: dataMode.payload.id,
-          name: dataMode.payload.name,
-          description: dataMode.payload.description,
-          html: dataMode.payload.html,
+          id: editData.id,
+          name: editData.name,
+          description: editData.description,
+          html: editData.html,
         };
       });
     }
-  }, [dataMode.payload]);
+  }, [editData]);
 
   useEffect(() => {
-    if (dataMode.mode === "add") {
+    if (mode === "add") {
       setBoxInfo((prev) => {
         return {
           ...prev,
@@ -89,11 +91,11 @@ function HtmlBox(props) {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      if (dataMode.mode == "add") {
+      if (mode == "add") {
         dispatch(addHtml(boxInfo));
         console.log("added");
         props.toggleDialog();
-      } else if (dataMode.mode === "edit") {
+      } else if (mode === "edit") {
         dispatch(editHtml(boxInfo));
         console.log("edited");
         props.toggleDialog();

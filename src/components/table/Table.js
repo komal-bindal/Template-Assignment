@@ -4,14 +4,15 @@ import "./Table.css";
 import TableActions from "./TableActions";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { emailDialogEditMode } from "../../actions/emailDialogBox.actions";
-import { htmlDialogEditMode } from "../../actions/htmlDialogBox.actions";
+import { emailDialogEditMode } from "../../store/modules/emailDialog";
+import { htmlDialogEditMode } from "../../store/modules/htmlDialog";
 import DeleteBox from "../dialogs/deleteBox/DeleteBox";
+import { selectNavigationTab } from "../../store/modules/navigationTab";
 function Table(props) {
   const [isEditDialogOpen, setEditDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deleteData, setDeleteData] = useState({});
-  const activeTab = useSelector((state) => state.navigationTabReducer.tab);
+  const activeTab = useSelector(selectNavigationTab);
 
   const dispatch = useDispatch();
 
@@ -49,13 +50,16 @@ function Table(props) {
     console.log("delete");
   }
   function handleOverlay() {
-    setEditDialogOpen(false)
-    setDeleteDialogOpen(false)
-}
+    setEditDialogOpen(false);
+    setDeleteDialogOpen(false);
+  }
 
   return (
     <div>
-      <div className={(isDeleteDialogOpen||isEditDialogOpen)?"overlay":""} onClick = {handleOverlay}></div>
+      <div
+        className={isDeleteDialogOpen || isEditDialogOpen ? "overlay" : ""}
+        onClick={handleOverlay}
+      ></div>
       <table className="table-container">
         <thead>
           <tr>
@@ -67,7 +71,7 @@ function Table(props) {
         <tbody>
           {props.content.map(function (item, i) {
             return (
-              <tr key = {i}>
+              <tr key={i}>
                 <td className="table-description">
                   {item[props.header1.toLowerCase()]}
                 </td>

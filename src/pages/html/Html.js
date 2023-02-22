@@ -5,16 +5,16 @@ import { useEffect, useState } from "react";
 import "./Html.css";
 import Table from "../../components/table/Table";
 import { useSelector, useDispatch } from "react-redux";
-import { htmllDialogAddMode } from "../../actions/htmlDialogBox.actions";
+import { htmllDialogAddMode } from "../../store/modules/htmlDialog";
+import { selectHtmls } from "../../store/modules/html";
 
 function Html() {
-  const htmls = useSelector((state) => state.htmlReducer).htmls;
-
+  const htmls = useSelector(selectHtmls);
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [visibleData, setVisibleData] = useState([]);
   const dispatch = useDispatch();
-
+  const wildCardSymbols = ["(", ")", "[", "]", "\\", "+", "^", "$", "?", "*"];
   function toggleDialog() {
     setDialogOpen((isDialogOpen) => !isDialogOpen);
   }
@@ -28,18 +28,6 @@ function Html() {
     if (searchText === "") {
       setVisibleData(htmls);
     } else {
-      const wildCardSymbols = [
-        "(",
-        ")",
-        "[",
-        "]",
-        "\\",
-        "+",
-        "^",
-        "$",
-        "?",
-        "*",
-      ];
       let searchTextRegex = "";
       for (let i = 0; i < searchText.length; i++) {
         if (wildCardSymbols.includes(searchText.charAt(i))) {

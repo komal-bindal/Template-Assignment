@@ -1,11 +1,12 @@
 import Button from "../../button/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteEmail } from "../../../actions/email.actions";
+import { deleteEmail } from "../../../store/modules/email";
 import "./DeleteBox.css";
-import { deleteHtml } from "../../../actions/html.actions";
+import { deleteHtml } from "../../../store/modules/html";
+import { selectNavigationTab } from "../../../store/modules/navigationTab";
 
 function DeleteBox(props) {
-  const activeTab = useSelector((state) => state.navigationTabReducer.tab);
+  const activeTab = useSelector(selectNavigationTab);
   const dispatch = useDispatch();
 
   function handleDelete() {

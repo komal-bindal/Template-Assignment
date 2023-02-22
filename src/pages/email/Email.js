@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import "./Email.css";
 import Table from "../../components/table/Table";
 import { useSelector, useDispatch } from "react-redux";
-import { emailDialogAddMode } from "../../actions/emailDialogBox.actions";
+import { emailDialogAddMode } from "../../store/modules/emailDialog";
+import { selectEmails } from "../../store/modules/email";
 
 function Email() {
-  const emails = useSelector((state) => state.emailReducer).emails;
-
+  const emails = useSelector(selectEmails);
+  const wildCardSymbols = ["(", ")", "[", "]", "\\", "+", "^", "$", "?", "*"];
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [visibleData, setVisibleData] = useState([]);
@@ -28,18 +29,6 @@ function Email() {
     if (searchText === "") {
       setVisibleData(emails);
     } else {
-      const wildCardSymbols = [
-        "(",
-        ")",
-        "[",
-        "]",
-        "\\",
-        "+",
-        "^",
-        "$",
-        "?",
-        "*",
-      ];
       let searchTextRegex = "";
       for (let i = 0; i < searchText.length; i++) {
         if (wildCardSymbols.includes(searchText.charAt(i))) {
